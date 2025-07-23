@@ -1,0 +1,10 @@
+﻿<AlibreDesignAddOn specificationVersion="2" friendlyName="$safeprojectname$">
+<Author name="$username$" link="$repositoryurl$"/>
+   <Copyright>Copyright (c) $year$ $username$</Copyright>
+   <DLL type="Managed" loadedWhen="Startup" location="$safeprojectname$.dll"/>
+   <Icon location=""/> 
+   <Menu text="$safeprojectname$"/>
+   <Description>$projectname$ - Generated from Alibre Script Addon Template</Description> 
+   <Workspace type="Always"/>
+   <Property name="Identifier" value="$safeprojectname$"/>
+</AlibreDesignAddOn>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Alibre Design Script Addon</Name>
+    <Description>A template for creating Alibre Design Script-based addons with Python integration</Description>
+    <Icon>__TemplateIcon.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>4.8.1</RequiredFrameworkVersion>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>AlibreScriptAddon</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>AlibreAddon</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <EnableEditOfLocationField>true</EnableEditOfLocationField>
+    <CreateInPlace>true</CreateInPlace>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="ProjectTemplate.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.cs">AlibreAddOn.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.adc">ProjectTemplate.adc</ProjectItem>
+      <Folder Name="Scripts" TargetFolderName="Scripts">
+        <Folder Name="src" TargetFolderName="src">
+          <Folder Name="$safeprojectname$" TargetFolderName="$safeprojectname$">
+            <ProjectItem ReplaceParameters="true" TargetFileName="Template.py">Template.py</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="alibre_setup.py">alibre_setup.py</ProjectItem>
+          </Folder>
+        </Folder>
+      </Folder>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="extension">
+      <package id="IronPython" version="3.4.2" />
+      <package id="IronPython.StdLib" version="3.4.2" />
+    </packages>
+  </WizardData>
+</VSTemplate>
