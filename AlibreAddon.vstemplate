@@ -28,6 +28,9 @@
         </Folder>
       </Folder>
     </Project>
+    <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.sln">alibre-shapes-addon.sln</ProjectItem>
+    <ProjectItem ReplaceParameters="false" TargetFileName="README.md">README.md</ProjectItem>
+    <ProjectItem ReplaceParameters="false" TargetFileName="TEMPLATE_USAGE.md">TEMPLATE_USAGE.md</ProjectItem>
   </TemplateContent>
   <WizardExtension>
     <Assembly>Microsoft.VisualStudio.TemplateWizard</Assembly>

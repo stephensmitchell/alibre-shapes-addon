@@ -422,3 +422,7 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Visual Studio Template files (for template developers)
+MyTemplate.vstemplate
+*.zip
