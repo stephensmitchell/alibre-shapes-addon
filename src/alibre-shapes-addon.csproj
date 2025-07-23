@@ -3,7 +3,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>9.0</LangVersion>
-    <RootNamespace>AssimpInsideAlibreDesignAddon</RootNamespace>
+    <RootNamespace>$safeprojectname$</RootNamespace>
     <TargetFramework>net481</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
@@ -29,14 +29,14 @@
     <Page Remove="icons\**" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="alibre-shapes-addon.adc" />
-    <None Remove="Scripts\src\hss\Template.py" />
+    <None Remove="$projectname$.adc" />
+    <None Remove="Scripts\src\examples\Template.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="alibre-shapes-addon.adc">
+    <Content Include="$projectname$.adc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\src\hss\Template.py">
+    <Content Include="Scripts\src\examples\Template.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -58,7 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Update="alibre-stltostp-addon.adc">
+    <None Update="$projectname$.adc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="config.json">

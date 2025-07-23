@@ -11,7 +11,7 @@ using System.Windows;
 using IStream = System.Runtime.InteropServices.ComTypes.IStream;
 using MessageBox = System.Windows.MessageBox;
 
-namespace AlibreAddOnAssembly
+namespace $safeprojectname$
 {
     public static class AlibreAddOn
     {
@@ -107,7 +107,7 @@ namespace AlibreAddOnAssembly
 
         public IAlibreAddOnCommand AboutCmd(IADSession session)
         {
-            MessageBox.Show("Steel shapes add-on demo\r\n\r\n");
+            MessageBox.Show("$safeprojectname$ addon\r\n\r\n$projectdescription$\r\n\r\nAuthor: $username$");
             return null;
         }
     }
@@ -119,21 +119,21 @@ namespace AlibreAddOnAssembly
 
         public MenuManager()
         {
-            _rootMenuItem = new MenuItem(401, "alibre-shapes-addon", "alibre-shapes-addon");
+            _rootMenuItem = new MenuItem(401, "$safeprojectname$", "$projectdescription$");
             BuildMenus();
             RegisterMenuItem(_rootMenuItem);
         }
 
         private void BuildMenus()
         {
-            var aboutItem = new MenuItem(9090, "About", "https://github.com/stephensmitchell/alibre-shapes-addon");
+            var aboutItem = new MenuItem(9090, "About", "$projecturl$");
             aboutItem.Command = aboutItem.AboutCmd;
             _rootMenuItem.AddSubItem(aboutItem);
 
             try
             {
                 string addOnDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string examplesPath = Path.Combine(addOnDirectory, "Scripts\\src\\hss");
+                string examplesPath = Path.Combine(addOnDirectory, "Scripts\\src\\examples");
                 if (Directory.Exists(examplesPath))
                 {
                     int currentMenuId = 10000;
@@ -190,7 +190,7 @@ namespace AlibreAddOnAssembly
             try
             {
                 string addOnDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string ScriptsPath = Path.Combine(addOnDirectory, "Scripts\\src\\hss");
+                string ScriptsPath = Path.Combine(addOnDirectory, "Scripts\\src\\examples");
                 string setupScriptPath = Path.Combine(ScriptsPath, "alibre_setup.py");
                 string mainScriptPath = Path.Combine(ScriptsPath, mainScriptFileName);
                 if (!File.Exists(setupScriptPath) || !File.Exists(mainScriptPath))

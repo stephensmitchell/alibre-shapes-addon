@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WizardData>
+  <parameters>
+    <parameter name="$projecturl$" displayName="Project URL" defaultValue="https://github.com/yourusername/yourproject" description="URL for your project repository"/>
+    <parameter name="$projectdescription$" displayName="Project Description" defaultValue="Alibre Design Addon" description="Brief description of your addon"/>
+    <parameter name="$scriptdescription$" displayName="Script Description" defaultValue="Template script for addon functionality" description="Description for the main script"/>
+    <parameter name="$username$" displayName="Author Name" defaultValue="Your Name" description="Your name or organization"/>
+    <parameter name="$date$" displayName="Current Date" defaultValue="$date$" description="Current date"/>
+    <parameter name="$year$" displayName="Current Year" defaultValue="$year$" description="Current year"/>
+  </parameters>
+</WizardData>

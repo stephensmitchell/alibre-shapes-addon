@@ -1,10 +1,10 @@
-﻿<AlibreDesignAddOn specificationVersion="2" friendlyName="alibre-shapes">
-<Author name="Stephen S. Mitchell" link="https://github.com/stephensmitchell/alibre-shapes-addon"/>
-   <Copyright>Copyright (c) 2025 Stephen S. Mitchell</Copyright>
-   <DLL type="Managed" loadedWhen="Startup" location="alibre-shapes-addon.dll"/>
+﻿<AlibreDesignAddOn specificationVersion="2" friendlyName="$safeprojectname$">
+<Author name="$username$" link="$projecturl$"/>
+   <Copyright>Copyright (c) $year$ $username$</Copyright>
+   <DLL type="Managed" loadedWhen="Startup" location="$projectname$.dll"/>
    <Icon location=""/> 
-   <Menu text="alibre-shapes-addon"/>
-   <Description>Demo</Description> 
+   <Menu text="$safeprojectname$"/>
+   <Description>$projectdescription$</Description> 
    <Workspace type="Always"/>
-   <Property name="Identifier" value="alibre-shapes-addon"/>
+   <Property name="Identifier" value="$safeprojectname$"/>
 </AlibreDesignAddOn>

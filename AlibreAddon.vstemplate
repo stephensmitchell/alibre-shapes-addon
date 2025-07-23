@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Alibre Design Addon</Name>
+    <Description>Creates a new Alibre Design addon project with C# and Python scripting support</Description>
+    <ProjectType>CSharp</ProjectType>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>AlibreAddon</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.png</Icon>
+    <PreviewImage>__PreviewImage.png</PreviewImage>
+    <SortOrder>1000</SortOrder>
+    <CreateInPlace>true</CreateInPlace>
+    <RequiredFrameworkVersion>4.8.1</RequiredFrameworkVersion>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="$projectname$.csproj" File="src\alibre-shapes-addon.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="AlibreAddOn.cs">src\AlibreAddOn.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.adc">src\alibre-shapes-addon.adc</ProjectItem>
+      <Folder Name="Scripts" TargetFolderName="Scripts">
+        <Folder Name="src" TargetFolderName="src">
+          <Folder Name="examples" TargetFolderName="examples">
+            <ProjectItem ReplaceParameters="true" TargetFileName="alibre_setup.py">src\Scripts\src\examples\alibre_setup.py</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Template.py">src\Scripts\src\examples\Template.py</ProjectItem>
+          </Folder>
+        </Folder>
+      </Folder>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.TemplateWizard</Assembly>
+    <FullClassName>Microsoft.VisualStudio.TemplateWizard.DefaultTemplateWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
