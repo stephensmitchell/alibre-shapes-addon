@@ -1,0 +1,34 @@
+Alibre Script Addon Template - Installation Instructions
+======================================================
+
+Manual Installation:
+1. Extract or copy 'AlibreScriptAddon.zip' to:
+   %USERPROFILE%\Documents\Visual Studio 2022\Templates\ProjectTemplates\Visual C#\
+
+   For other Visual Studio versions, use the appropriate year folder.
+
+2. Restart Visual Studio
+
+3. Create a new project and search for "Alibre" or browse to Visual C# templates
+
+4. Select "Alibre Design Script Addon" template
+
+Alternative Installation (Extract ZIP):
+1. Extract the ZIP file contents to your Visual Studio templates folder
+2. Follow steps 2-4 above
+
+Template Location Examples:
+- VS 2022: %USERPROFILE%\Documents\Visual Studio 2022\Templates\ProjectTemplates\Visual C#\
+- VS 2019: %USERPROFILE%\Documents\Visual Studio 2019\Templates\ProjectTemplates\Visual C#\
+
+Troubleshooting:
+- If template doesn't appear, restart Visual Studio
+- Check that the .vstemplate file is in the correct location
+- Clear Visual Studio template cache if needed
+
+For more information, see:
+- TEMPLATE_INSTALLATION.md
+- USAGE_GUIDE.md
+- README.md
+
+Generated: 07/23/2025 14:30:23
