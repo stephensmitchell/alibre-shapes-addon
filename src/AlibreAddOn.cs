@@ -107,7 +107,7 @@ namespace AlibreAddOnAssembly
 
         public IAlibreAddOnCommand AboutCmd(IADSession session)
         {
-            MessageBox.Show("Alibre Scripting Add-on");
+            MessageBox.Show("Steel shapes add-on demo\r\n\r\n");
             return null;
         }
     }
@@ -119,36 +119,32 @@ namespace AlibreAddOnAssembly
 
         public MenuManager()
         {
-            _rootMenuItem = new MenuItem(401, "Scripts", "Demo");
+            _rootMenuItem = new MenuItem(401, "alibre-shapes-addon", "alibre-shapes-addon");
             BuildMenus();
             RegisterMenuItem(_rootMenuItem);
         }
 
         private void BuildMenus()
         {
-            var aboutItem = new MenuItem(9090, "About", "About this Add-on");
+            var aboutItem = new MenuItem(9090, "About", "https://github.com/stephensmitchell/alibre-shapes-addon");
             aboutItem.Command = aboutItem.AboutCmd;
             _rootMenuItem.AddSubItem(aboutItem);
 
             try
             {
                 string addOnDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string examplesPath = Path.Combine(addOnDirectory, "Examples");
-
+                string examplesPath = Path.Combine(addOnDirectory, "Scripts\\src\\hss");
                 if (Directory.Exists(examplesPath))
                 {
                     int currentMenuId = 10000;
                     var scriptFiles = Directory.GetFiles(examplesPath, "*.py");
-
                     foreach (var scriptFile in scriptFiles)
                     {
                         string fileName = Path.GetFileName(scriptFile);
                         if (fileName.Equals("alibre_setup.py", StringComparison.OrdinalIgnoreCase)) continue;
-
                         string baseName = Path.GetFileNameWithoutExtension(fileName);
                         string menuText = baseName.Replace("-", " ").Replace("_", " ");
                         var scriptMenuItem = new MenuItem(currentMenuId++, menuText, $"Run {fileName}");
-
                         scriptMenuItem.Command = (session) =>
                         {
                             AlibreAddOn.GetScriptRunner()?.ExecuteScript(session, fileName);
@@ -178,27 +174,25 @@ namespace AlibreAddOnAssembly
     {
         private readonly ScriptEngine _engine;
         private readonly IADRoot _alibreRoot;
-
         public ScriptRunner(IADRoot alibreRoot)
         {
             _alibreRoot = alibreRoot;
             _engine = Python.CreateEngine();
-            string alibreInstallPath = "C:\\Program Files\\Alibre Design 28.1.0.28223";
+            string alibreInstallPath = "C:\\Program Files\\Alibre Design 28.1.1.28227";
             var searchPaths = _engine.GetSearchPaths();
             searchPaths.Add(Path.Combine(alibreInstallPath, "Program"));
             searchPaths.Add(Path.Combine(alibreInstallPath, "Program", "Addons", "AlibreScript", "PythonLib"));
             searchPaths.Add(Path.Combine(alibreInstallPath, "Program", "Addons", "AlibreScript"));
             _engine.SetSearchPaths(searchPaths);
         }
-
         public void ExecuteScript(IADSession session, string mainScriptFileName)
         {
             try
             {
                 string addOnDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string examplesPath = Path.Combine(addOnDirectory, "Examples");
-                string setupScriptPath = Path.Combine(examplesPath, "alibre_setup.py");
-                string mainScriptPath = Path.Combine(examplesPath, mainScriptFileName);
+                string ScriptsPath = Path.Combine(addOnDirectory, "Scripts\\src\\hss");
+                string setupScriptPath = Path.Combine(ScriptsPath, "alibre_setup.py");
+                string mainScriptPath = Path.Combine(ScriptsPath, mainScriptFileName);
                 if (!File.Exists(setupScriptPath) || !File.Exists(mainScriptPath))
                 {
                     MessageBox.Show($"Error: Script not found.\nSetup: {setupScriptPath}\nMain: {mainScriptPath}", "Script Error");
@@ -206,7 +200,7 @@ namespace AlibreAddOnAssembly
                 }
                 ScriptScope scope = _engine.CreateScope();
                 scope.SetVariable("ScriptFileName", mainScriptFileName);
-                scope.SetVariable("ScriptFolder", examplesPath);
+                scope.SetVariable("ScriptFolder", ScriptsPath);
                 scope.SetVariable("SessionIdentifier", session.Identifier);
                 scope.SetVariable("Arguments", new List<string>());
                 scope.SetVariable("AlibreRoot", _alibreRoot);
