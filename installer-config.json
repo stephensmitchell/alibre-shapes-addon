@@ -1,0 +1,49 @@
+{
+  "installer": {
+    "name": "Alibre Shapes Addon",
+    "version": "2.0",
+    "publisher": "Stephen S. Mitchell",
+    "description": "Alibre Script-based addon for shape operations",
+    "url": "https://github.com/stephensmitchell/alibre-shapes-addon",
+    "guid": "{78C709DA-7E50-4BDC-A73B-79E730DDB7EC}",
+    "outputDir": "installer",
+    "compression": "lzma",
+    "solidCompression": true
+  },
+  "build": {
+    "configuration": "Debug",
+    "framework": "net481",
+    "platform": "x64",
+    "projectPath": "src\\alibre-shapes-addon.csproj"
+  },
+  "files": {
+    "mainAssembly": "alibre-shapes-addon.dll",
+    "configFile": "alibre-shapes-addon.adc",
+    "dependencies": [
+      "IronPython.dll",
+      "IronPython.Modules.dll",
+      "IronPython.SQLite.dll",
+      "IronPython.Wpf.dll",
+      "Microsoft.Dynamic.dll",
+      "Microsoft.Scripting.dll",
+      "Microsoft.Scripting.Metadata.dll",
+      "System.Buffers.dll",
+      "System.Memory.dll",
+      "System.Numerics.Vectors.dll",
+      "System.Runtime.CompilerServices.Unsafe.dll"
+    ],
+    "directories": [
+      "lib",
+      "Scripts"
+    ]
+  },
+  "registry": {
+    "rootKey": "HKLM",
+    "basePath": "SOFTWARE\\Alibre, LLC\\Alibre Design\\Addons"
+  },
+  "requirements": {
+    "minWindowsVersion": "6.1sp1",
+    "dotNetFramework": "4.8.1",
+    "architecture": "x64"
+  }
+}
