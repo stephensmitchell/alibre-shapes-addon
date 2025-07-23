@@ -28,5 +28,26 @@ The template creates a complete addon project with:
 
 **Submit questions to the Alibre Forum or contact me directly.**
 
+## Template Usage
+
+This repository now includes a complete **Visual Studio project template** for creating Alibre Script-based addons. Use the template to quickly start building your own addons without setting up the project structure from scratch.
+
+### Quick Start with Template
+1. Install the template following `TEMPLATE_INSTALLATION.md`
+2. Create new project using "Alibre Design Script Addon" template
+3. Customize the generated Python scripts for your needs
+4. Build and deploy to Alibre Design
+
+### Template Features
+- Complete C# addon framework
+- Python script integration
+- Dynamic menu generation
+- Example scripts included
+- Parameterized for easy customization
+
+See `USAGE_GUIDE.md` for detailed usage instructions and examples.
+
+## Links
+
 https://www.alibre.com/
 https://www.alibre.com/forum/index.php
