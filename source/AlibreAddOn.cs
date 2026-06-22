@@ -51,7 +51,7 @@ namespace AlibreAddOnAssembly
 
         public int RootMenuItem => _menuManager.GetRootMenuItem().Id;
         public bool HasSubMenus(int menuID) => _menuManager.GetMenuItemById(menuID)?.SubItems.Count > 0;
-        public Array SubMenuItems(int menuID) => _menuManager.GetMenuItemById(menuID)?.SubItems.Select(subItem => subItem.Id).ToArray();
+        public Array SubMenuItems(int menuID) => _menuManager.GetMenuItemById(menuID)?.SubItems.Select(subItem => subItem.Id).ToArray() ?? new int[0];
         public string MenuItemText(int menuID) => _menuManager.GetMenuItemById(menuID)?.Text;
         public string MenuItemToolTip(int menuID) => _menuManager.GetMenuItemById(menuID)?.ToolTip;
 
@@ -75,12 +75,10 @@ namespace AlibreAddOnAssembly
 
         public void LoadData(global::AlibreAddOn.IStream pCustomData, string sessionIdentifier)
         {
-            throw new NotImplementedException();
         }
 
         public void SaveData(global::AlibreAddOn.IStream pCustomData, string sessionIdentifier)
         {
-            throw new NotImplementedException();
         }
     }
 
@@ -100,7 +98,7 @@ namespace AlibreAddOnAssembly
             Id = id;
             Text = text;
             ToolTip = toolTip;
-            Icon = null;
+            Icon = icon;
         }
 
         public void AddSubItem(MenuItem subItem) => SubItems.Add(subItem);
@@ -178,7 +176,7 @@ namespace AlibreAddOnAssembly
         {
             _alibreRoot = alibreRoot;
             _engine = Python.CreateEngine();
-            string alibreInstallPath = "C:\\Program Files\\Alibre Design 28.1.1.28227";
+            string alibreInstallPath = "C:\\Program Files\\Alibre Design 29.0.0.29060";
             var searchPaths = _engine.GetSearchPaths();
             searchPaths.Add(Path.Combine(alibreInstallPath, "Program"));
             searchPaths.Add(Path.Combine(alibreInstallPath, "Program", "Addons", "AlibreScript", "PythonLib"));
