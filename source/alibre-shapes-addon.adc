@@ -6,5 +6,5 @@
    <Menu text="alibre-shapes-addon"/>
    <Description>Demo</Description> 
    <Workspace type="Always"/>
-   <Property name="Identifier" value="alibre-shapes-addon"/>
+   <Property name="Identifier" value="{1DA050AB-E6E5-4661-BF4E-011D09351558}"/>
 </AlibreDesignAddOn>
