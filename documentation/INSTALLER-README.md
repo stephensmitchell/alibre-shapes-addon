@@ -108,7 +108,7 @@ HKLM\SOFTWARE\Alibre, LLC\Alibre Design\Addons\Alibre Shapes Addon\
 ### Inno Setup
 - Distribute the single `.exe` file from the `installer/` directory
 - Can be uploaded to GitHub releases, websites, etc.
-- Users simply run the executable
+- Users run the executable
 
 ### Advanced Installer
 - Distribute the `.msi` file

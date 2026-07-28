@@ -4,6 +4,7 @@ using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -55,7 +56,6 @@ namespace AlibreAddOnAssembly
         public string MenuItemText(int menuID) => _menuManager.GetMenuItemById(menuID)?.Text;
         public string MenuItemToolTip(int menuID) => _menuManager.GetMenuItemById(menuID)?.ToolTip;
 
-        // Icon functionality disabled: always returns null
         public string MenuIcon(int menuID) => null;
 
         public IAlibreAddOnCommand InvokeCommand(int menuID, string sessionIdentifier)
@@ -176,12 +176,54 @@ namespace AlibreAddOnAssembly
         {
             _alibreRoot = alibreRoot;
             _engine = Python.CreateEngine();
-            string alibreInstallPath = "C:\\Program Files\\Alibre Design 29.0.0.29060";
-            var searchPaths = _engine.GetSearchPaths();
-            searchPaths.Add(Path.Combine(alibreInstallPath, "Program"));
-            searchPaths.Add(Path.Combine(alibreInstallPath, "Program", "Addons", "AlibreScript", "PythonLib"));
-            searchPaths.Add(Path.Combine(alibreInstallPath, "Program", "Addons", "AlibreScript"));
-            _engine.SetSearchPaths(searchPaths);
+            string programDir = ResolveAlibreProgramDir();
+            if (!string.IsNullOrEmpty(programDir))
+            {
+                var searchPaths = _engine.GetSearchPaths();
+                searchPaths.Add(programDir);
+                searchPaths.Add(Path.Combine(programDir, "Addons", "AlibreScript", "PythonLib"));
+                searchPaths.Add(Path.Combine(programDir, "Addons", "AlibreScript"));
+                _engine.SetSearchPaths(searchPaths);
+            }
+        }
+
+        /// <summary>
+        /// Locates the Program folder of the Alibre Design installation to load scripts from.
+        /// Prefers ALIBRE_PROGRAM_DIR, then the running host process, then the newest install found.
+        /// </summary>
+        private static string ResolveAlibreProgramDir()
+        {
+            string configured = Environment.GetEnvironmentVariable("ALIBRE_PROGRAM_DIR");
+            if (!string.IsNullOrEmpty(configured) && File.Exists(Path.Combine(configured, "AlibreX.dll")))
+                return configured;
+
+            try
+            {
+                string hostDir = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+                if (!string.IsNullOrEmpty(hostDir) && File.Exists(Path.Combine(hostDir, "AlibreX.dll")))
+                    return hostDir;
+            }
+            catch (Exception)
+            {
+            }
+
+            string baseDir = Environment.GetEnvironmentVariable("ProgramW6432");
+            if (string.IsNullOrEmpty(baseDir))
+                baseDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            if (string.IsNullOrEmpty(baseDir) || !Directory.Exists(baseDir))
+                return null;
+
+            string newest = null;
+            foreach (string candidate in Directory.GetDirectories(baseDir, "Alibre Design *"))
+            {
+                if (candidate.IndexOf("BETA", StringComparison.OrdinalIgnoreCase) >= 0)
+                    continue;
+                if (!File.Exists(Path.Combine(candidate, "Program", "AlibreX.dll")))
+                    continue;
+                if (newest == null || string.CompareOrdinal(candidate, newest) > 0)
+                    newest = candidate;
+            }
+            return newest == null ? null : Path.Combine(newest, "Program");
         }
         public void ExecuteScript(IADSession session, string mainScriptFileName)
         {
