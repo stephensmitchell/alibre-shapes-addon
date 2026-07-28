@@ -19,7 +19,6 @@
   - Where things live
     - `source/` holds the C# add-on, the generator scripts, and the installer configuration.
     - `documentation/` holds the installer notes.
-    - `reviews/` holds dated code reviews.
   - Good to know
     - This build ships as a demo and a template, so it comes with one generator rather than a full catalogue.
     - Generator scripts run under IronPython 2.7, so keep them compatible with Python 2.7.
